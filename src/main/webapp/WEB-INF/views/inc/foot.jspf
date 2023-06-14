@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<style>
+	#content .jumbotron, #content .navbar{
+		display:none;
+	}
+</style>        
+        </div><!-- .container end------- -->
+        
+        <!-- footer----------------- -->
+        <div class="jumbotron jumbotron-fluid text-center" style="margin-bottom:0">
+            <h2>Footer</h2>            
+        </div>
+</body>
+</html>

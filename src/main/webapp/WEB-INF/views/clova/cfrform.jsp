@@ -16,6 +16,8 @@
 			let form=$('#uploadForm')[0];//form객체
 			//alert(form)
 			let data=new FormData(form);
+			let fname=data.get("image").name;
+			console.log("fname="+fname);
 			let url="cfrCelebrity";
 			$.ajax({
 				type:'post',
@@ -25,9 +27,23 @@
 				processData:false,
 				contentType:false,//multipart/form-data로 전송되도록 false로 지정				
 			}).done((res)=>{
-				alert(JSON.stringify(res));
+				//alert(JSON.stringify(res));
+				let str='<img src="upload/'+fname+'">';
+				$('#previewImg').html(str);	
+				
+				let objStr=res.result;//string유형
+				//alert(typeof obj)
+				
+				let obj=JSON.parse(objStr);//json객체유형
+				$('#result').html('');
+				$.each(obj.faces, function(i, face){
+					$('#result').html("<h2>"+face.celebrity.value+"와 닮았네요!! confidence: "+face.celebrity.confidence+"</h2>");
+				})
+				
+				
 			}).fail((err)=>{
 				alert(err.status)
+				$('#result').html("Error!!: "+err.responseText);
 			})
 			
 			
@@ -51,4 +67,9 @@
 		<input type="file" name="image" id="image">
 		<button>확 인</button>
 	</form>
+	<div id="previewImg"></div>
+	<div id="result"></div>
 </div>
+
+
+
